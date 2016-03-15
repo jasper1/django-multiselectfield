@@ -31,3 +31,14 @@ class MultiSelectFormField(forms.MultipleChoiceField):
         self.validators.append(MaxValueMultiFieldValidator(self.max_length))
         if self.max_choices is not None:
             self.validators.append(MaxChoicesValidator(self.max_choices))
+
+    def prepare_value(self, value):
+        '''
+            Override prepare_value to convert string to list, so it can be used
+        '''
+        if value==None or value=='':
+            return []
+        elif isinstance(value, list):
+            return value
+        elif isinstance(value, basestring):
+            return value.split(",")
