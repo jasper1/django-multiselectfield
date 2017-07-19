@@ -40,5 +40,5 @@ class MultiSelectFormField(forms.MultipleChoiceField):
             return []
         elif isinstance(value, list):
             return value
-        elif isinstance(value, basestring):
+        elif isinstance(value, str):
             return value.split(",")
